@@ -6,6 +6,7 @@ Based on the work of solipsist01: https://github.com/solipsist01/dockerfiles/tre
 Someone asked for a way to run this MOHAA Docker server while beeing abble to add some contents such as maps, skins...
 
 I added a MOUNT volume, cron and a cronjob that copy files from local volume to the /app (workdir that can't be mounted) and a startup script to launch the game and cron.
+Maybe not the smartest but surely the easiest to me.
 
 Tested on Linux Ubuntu/Debian.
 
