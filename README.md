@@ -1,27 +1,36 @@
 # Docker-MOHAA-server
-Docker MOHAA server including volume to add contents
+Docker MOHAA 1.12 Reborn server including volume to add contents such as maps, skins...
 
-Based on the work of solipsist01: https://github.com/solipsist01/dockerfiles/tree/master/mohaa
+Based on the work of solipsist01: https://github.com/solipsist01/
+MOHAA Reborn: https://x-null.net/wiki/index.php?title=Medal_of_Honor:_AA_Reborn_Patch#Why_did_you_call_it_Reborn.3F
 
-Someone asked for a way to run this MOHAA Docker server while beeing abble to add some contents such as maps, skins...
-
-I added a MOUNT volume, cron and a cronjob that copy files from local volume to the /app (workdir that can't be mounted) and a startup script to launch the game and cron.
-Maybe not the smartest but surely the easiest to me.
 
 Tested on Linux Ubuntu/Debian.
 
-**How to use**
-Clone this repo: 
-Build the Docker: 
-```
+Game root folder (/app) is a WORKDIR in Docker so it can't be mounted locally (VOLUME). Thus we can't add maps or whatever easily.
+I added:
+ - /stuff folder as a VOLUME (aka you can mount it locally)
+ - cron and a cronjob so as every minute any file/folder in /stuff will be copied to /app
+ - new startup script to launch game server and start cron
+
+Not the smartest but the easiest to me.
+
+GL HF!!
+
+
 
 ```
-Run it:
-```docker run -d \
+docker run -d \
 --name=mohaa \
 --restart always \
 -p 12203:12203/udp \
 -p 12300:12300/udp \
+-e TZ=Europe/Paris \
 -v /home/aerya/docker/mohaa/config:/config \
 -v /home/aerya/docker/mohaa/stuff:/stuff \
-aerya/mohaatesting:latest```
+aerya/mohaa-server-volume-enabled:latest
+```
+
+/config = game server config (config.cfg)
+
+/stuff = add maps or whatever
