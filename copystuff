@@ -1,2 +1,2 @@
-* * * * * cp -r /stuff/* /app
+* * * * * chmod -R 777 /stuff/ && cp -r /stuff/* /app
 # ligne vide
