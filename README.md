@@ -34,3 +34,5 @@ aerya/mohaa-server-volume-enabled:latest
 
 * /config = game server config (config.cfg)
 * /stuff = add maps or whatever
+
+Reported to work on Synology.
